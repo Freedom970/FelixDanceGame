@@ -1,7 +1,7 @@
 
-function levelOne(){
-background(bg_level1);
-hero.overlap(canisters,heroScore);
+function levelThree(){
+
+background(bg_level3);
 
 //.........................................INCOMING...BULLETS...................
 if(random(100)<40){
@@ -12,7 +12,7 @@ if(random(100)<40){
         bulletUpper.shapeColor = (250);
         enemies.add(bulletUpper);
         //bulletUpper.debug = true;
-        bulletUpper.addAnimation("tribalDefault",tribalDefault);
+        bulletUpper.addAnimation("technoDefault",technoDefault);
         bulletUpper.scale = .5;
         bulletUpper.animation.frameDelay = 2;
     }
@@ -25,7 +25,7 @@ if(random(100)<40){
           bulletMiddle.shapeColor = (250);
           enemies.add(bulletMiddle); 
         //bulletMiddle.debug = true;
-        bulletMiddle.addAnimation("tribalDefault",tribalDefault);
+        bulletMiddle.addAnimation("technoDefault",technoDefault);
         bulletMiddle.scale = .5;
         bulletMiddle.animation.frameDelay = 2;
       
@@ -38,7 +38,7 @@ if(random(100)<40){
           bulletLower.life = 1300;
           bulletLower.shapeColor = (250);
           enemies.add(bulletLower); 
-          bulletLower.addAnimation("tribalDefault",tribalDefault);
+          bulletLower.addAnimation("technoDefault",technoDefault);
           bulletLower.scale = .5;
           bulletLower.animation.frameDelay = 2;
       
@@ -46,12 +46,12 @@ if(random(100)<40){
     }
     //..........................POINTS..SYSTEM......................
   if(random(100)<70){
-    if (frameCount%100=== 0){
-      var fuel = createSprite(1400,random(720,420,560),40,50);
+    if (frameCount%10=== 0){
+      var fuel = createSprite(1400,random(720,420,560),30,40);
           fuel.setSpeed(6,180);
           fuel.life = 1300;
           fuel.shapeColor = (250,0,0);
-        //fuel.debug = true;
+       // fuel.debug = true;
         fuel.addImage(fuelIm);
         canisters.add(fuel);  
       }
@@ -70,26 +70,26 @@ if(random(100)<40){
   //.............................audience wave.............................................
     for(var i = 0; i < 100; i++){
       var speed = .01;
-      var time = (frameCount *speed)+(i* 1);
-      var timeTwo = (frameCount *speed)+(i* 2)
-      var timeThree = (frameCount *speed)+(i* 4)
+      var time = (frameCount *speed)+(i* .1);
+      var timeTwo = (frameCount *speed)+(i* .2)
+      var timeThree = (frameCount *speed)+(i* .4)
       var firstRow = map(noise(time),0,1,100,200);
       var secondRow = map(noise(timeTwo),0,1,100,200);
       var thirdRow = map(noise(timeThree),0,1,100,200);
       //offest the varable in time
-      var spacer = 45;
+      var spacer = 55;
      
    push();
       //location of the ellipse
-        translate(i*spacer, -70);
+        translate(i*spacer*1, -70);
         translate(0,thirdRow);
       //the moving bars
         noStroke();
-        fill(200,160,100)
-        ellipse(0,0, 45, 45);
-       fill(10);
-        ellipse(10,-5, 10, 10);
-        ellipse(-10,-5, 10, 10);
+        fill(200,0,0)
+        rect(0,0, 45, 45);
+              fill(255,255,0);
+        ellipse(30,15, 10, 10);
+        ellipse(10,15, 10, 10);
     pop();
     push();
       //location of the ellipse
@@ -97,11 +97,11 @@ if(random(100)<40){
         translate(0,secondRow);
       //the moving bars
         noStroke();
-         fill(200,160,100);
-        ellipse(0,0, 45, 45);
-        fill(10);
-        ellipse(10,-5, 10, 10);
-        ellipse(-10,-5, 10, 10);
+         fill(200,0,0)
+        rect(0,0, 45, 45);
+              fill(255,255,0);
+        ellipse(30,15, 10, 10);
+        ellipse(10,15, 10, 10);
      pop();
      push();
       //location of the ellipse
@@ -109,11 +109,11 @@ if(random(100)<40){
         
       //the moving bars
         noStroke();
-        fill(200,160,100)
-        ellipse(0,0, 45, 45);
-              fill(10);
-        ellipse(10,-5, 10, 10);
-        ellipse(-10,-5, 10, 10);
+        fill(200,0,0)
+        rect(0,0, 45, 45);
+              fill(255,255,0);
+        ellipse(30,15, 10, 10);
+        ellipse(10,15, 10, 10);
      pop();
     }
 //........................................STAGE............................  
@@ -124,7 +124,7 @@ if(random(100)<40){
   rect(100,185,200,150);
 
 //..................................SCORE..INDICATOR............................  
-  fill(0,255,255)
+   fill(0,255,255);
   textSize(32);
   
   text('score '+score,100,285);
@@ -149,7 +149,7 @@ if(random(100)<40){
          translate(0,hfirstRow);
       //the moving bars
         noStroke();
-        fill(85,208,72);
+        fill(100);
         rect(0,0, 100, 150);
      pop();
     push();
@@ -158,7 +158,7 @@ if(random(100)<40){
         translate(0,hsecondRow);
       //the moving bars
         noStroke();
-        fill(34,185,17)
+        fill(150)
         rect(0,0, 100, 150);
      pop();
       push();
@@ -167,13 +167,14 @@ if(random(100)<40){
         translate(0,hthirdRow);
       //the moving bars
         noStroke();
-        fill(61,115,55)
+        fill(200)
         rect(0,0, 100, 150);
     pop();
       } 
     
  //................................................OVERLAPS....................   
 enemies.overlap(bullets, enemyHit);
+hero.overlap(canisters,heroScore);
 hero.overlap(blaster,heroShoot);
 enemies.overlap(hero,heroHit);
 

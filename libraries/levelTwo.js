@@ -1,7 +1,7 @@
 
-function levelOne(){
-background(bg_level1);
-hero.overlap(canisters,heroScore);
+function levelTwo(){
+
+background(bg_level2);
 
 //.........................................INCOMING...BULLETS...................
 if(random(100)<40){
@@ -12,7 +12,7 @@ if(random(100)<40){
         bulletUpper.shapeColor = (250);
         enemies.add(bulletUpper);
         //bulletUpper.debug = true;
-        bulletUpper.addAnimation("tribalDefault",tribalDefault);
+        bulletUpper.addAnimation("romanDefault",romanDefault);
         bulletUpper.scale = .5;
         bulletUpper.animation.frameDelay = 2;
     }
@@ -25,7 +25,7 @@ if(random(100)<40){
           bulletMiddle.shapeColor = (250);
           enemies.add(bulletMiddle); 
         //bulletMiddle.debug = true;
-        bulletMiddle.addAnimation("tribalDefault",tribalDefault);
+        bulletMiddle.addAnimation("romanDefault",romanDefault);
         bulletMiddle.scale = .5;
         bulletMiddle.animation.frameDelay = 2;
       
@@ -38,7 +38,7 @@ if(random(100)<40){
           bulletLower.life = 1300;
           bulletLower.shapeColor = (250);
           enemies.add(bulletLower); 
-          bulletLower.addAnimation("tribalDefault",tribalDefault);
+          bulletLower.addAnimation("romanDefault",romanDefault);
           bulletLower.scale = .5;
           bulletLower.animation.frameDelay = 2;
       
@@ -58,7 +58,7 @@ if(random(100)<40){
   }
   //.................................AMMO..CRATES........................
   if(random(100)<20){
-    if (frameCount%100=== 0){
+    if (frameCount%50=== 0){
       var crate = createSprite(1400,random(710,540),30,40);
           crate.setSpeed(3,180);
           crate.life = 1300;
@@ -97,7 +97,7 @@ if(random(100)<40){
         translate(0,secondRow);
       //the moving bars
         noStroke();
-         fill(200,160,100);
+         fill(200,160,100)
         ellipse(0,0, 45, 45);
         fill(10);
         ellipse(10,-5, 10, 10);
@@ -124,7 +124,7 @@ if(random(100)<40){
   rect(100,185,200,150);
 
 //..................................SCORE..INDICATOR............................  
-  fill(0,255,255)
+  fill(0,255,255);
   textSize(32);
   
   text('score '+score,100,285);
@@ -149,7 +149,7 @@ if(random(100)<40){
          translate(0,hfirstRow);
       //the moving bars
         noStroke();
-        fill(85,208,72);
+        fill(200,160,150);
         rect(0,0, 100, 150);
      pop();
     push();
@@ -158,7 +158,7 @@ if(random(100)<40){
         translate(0,hsecondRow);
       //the moving bars
         noStroke();
-        fill(34,185,17)
+        fill(200,160,125)
         rect(0,0, 100, 150);
      pop();
       push();
@@ -167,13 +167,14 @@ if(random(100)<40){
         translate(0,hthirdRow);
       //the moving bars
         noStroke();
-        fill(61,115,55)
+        fill(200,160,100)
         rect(0,0, 100, 150);
     pop();
       } 
     
  //................................................OVERLAPS....................   
 enemies.overlap(bullets, enemyHit);
+hero.overlap(canisters,heroScore);
 hero.overlap(blaster,heroShoot);
 enemies.overlap(hero,heroHit);
 
